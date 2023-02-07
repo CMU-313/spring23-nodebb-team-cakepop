@@ -1,3 +1,4 @@
+// Will need to convert to TS for sure and add isAnonymous
 
 'use strict';
 

@@ -1,3 +1,5 @@
+// Will need to convert to TS and add a field for isAnonymous
+
 'use strict';
 
 const db = require('../database');

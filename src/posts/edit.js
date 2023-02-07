@@ -1,3 +1,5 @@
+// Convert to TS and add isAnonymous field
+
 'use strict';
 
 const validator = require('validator');

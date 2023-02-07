@@ -1,3 +1,5 @@
+// Translate this file into TS and add functionality (might need to do it for entire folder ew)
+
 'use strict';
 
 const _ = require('lodash');

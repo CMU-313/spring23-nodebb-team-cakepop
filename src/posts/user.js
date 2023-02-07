@@ -1,3 +1,5 @@
+// Might need to convert to TS and create hash of user_id
+
 'use strict';
 
 const async = require('async');
