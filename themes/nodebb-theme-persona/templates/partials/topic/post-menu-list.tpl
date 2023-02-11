@@ -23,18 +23,6 @@
 </li>
 <!-- END -->
 
-<li !-- IF posts.resolved -->hidden<!-- ENDIF posts.resolved -->>
-    <a component="post/toggle-resolve" role="menuitem" tabindex="-1" href="#" class="<!-- IF posts.resolved -->hidden<!-- ENDIF posts.resolved-- >">
-        <div class="inline menu-icon"><i class="fa fa-fw check-circle-o"></i></div> <span>[[topic:resolve]]</span>
-    </a>
-</li>
-
-<li !-- IF !posts.resolved -->hidden<!-- ENDIF !posts.resolved -->>
-    <a component="post/toggle-resolve" role="menuitem" tabindex="-1" href="#" class="<!-- IF !posts.resolved -->hidden<!-- ENDIF !posts.resolved-- >">
-        <div class="inline menu-icon"><i class="fa fa-fw question-circle-o"></i></div> <span>[[topic:resolve]]</span>
-    </a>
-</li>
-
 <!-- IF posts.display_move_tools -->
 <li>
     <a component="post/move" role="menuitem" tabindex="-1" href="#">
