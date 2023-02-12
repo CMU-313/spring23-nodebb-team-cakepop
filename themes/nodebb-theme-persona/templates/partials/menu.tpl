@@ -45,6 +45,18 @@
                 <!-- IF config.loggedIn -->
 
                 <ul id="logged-in-menu" class="nav navbar-nav navbar-right">
+                    <li>
+                        <a>
+                            <input type="search" id="site-search" placeholder="search">
+                        </a>
+                            
+                    </li>
+                    <li>
+                        <a href="/" role="button">
+                            <i class="fa fa-search" data-content="0"></i>
+                        </a>
+                        
+                    </li>
                     <li class="notifications dropdown text-center hidden-xs" component="notifications">
                         <a href="{relative_path}/notifications" title="[[global:header.notifications]]" class="dropdown-toggle" data-toggle="dropdown" id="notif_dropdown" data-ajaxify="false" role="button">
                             <i component="notifications/icon" class="fa fa-fw fa-bell-o unread-count" data-content="{unreadCount.notification}"></i>
