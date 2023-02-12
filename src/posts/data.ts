@@ -9,7 +9,7 @@ import { PostObject } from '../types';
 const intFields: string[] = [
     'uid', 'pid', 'tid', 'deleted', 'timestamp',
     'upvotes', 'downvotes', 'deleterUid', 'edited',
-    'replies', 'bookmarks',
+    'replies', 'bookmarks', 'is_anonymous',
 ];
 
 interface PostObjectNew extends PostObject {
