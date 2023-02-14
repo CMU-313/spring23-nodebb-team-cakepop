@@ -54,23 +54,28 @@ module.exports = function (Posts) {
         posts = await user.blocks.filter(uid, posts) as post[];
 
         // The next line calls a function in a module that has not been updated to TS yet
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
+        // eslint-disable-next-line
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-return
         const uids: number[] = _.uniq(posts.map(p => p && p.uid)) as number[];
         // The next line calls a function in a module that has not been updated to TS yet
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
+        // eslint-disable-next-line
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-return
         const tids: string[] = _.uniq(posts.map(p => p && p.tid)) as string[];
 
         async function getTopicAndCategories(tids: string[]) {
             // The next line calls a function in a module that has not been updated to TS yet
+            // eslint-disable-next-line
             // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
             const topicsData: topics[] = await topics.getTopicsFields(tids, [
                 'uid', 'tid', 'title', 'cid', 'tags', 'slug',
                 'deleted', 'scheduled', 'postcount', 'mainPid', 'teaserPid',
             ]) as topics[];
             // The next line calls a function in a module that has not been updated to TS yet
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
+            // eslint-disable-next-line
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-return
             const cids: string[] = _.uniq(topicsData.map(topic => topic && topic.cid)) as string[];
             // The next line calls a function in a module that has not been updated to TS yet
+            // eslint-disable-next-line
             // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
             const categoriesData: string[] = await categories.getCategoriesFields(cids, [
                 'cid', 'name', 'icon', 'slug', 'parentCid',
@@ -81,6 +86,7 @@ module.exports = function (Posts) {
 
         const [users, topicsAndCategories] = await Promise.all([
             // The next line calls a function in a module that has not been updated to TS yet
+            // eslint-disable-next-line
             // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
             user.getUsersFields(uids, ['uid', 'username', 'userslug', 'picture', 'status']) as string[],
             getTopicAndCategories(tids),
@@ -89,7 +95,7 @@ module.exports = function (Posts) {
         function toObject(key: string, data: string[]) {
             const obj = {};
             for (let i = 0; i < data.length; i += 1) {
-                obj[data[i][key]] = data[i];
+                obj[data[i][key] as string] = data[i];
             }
             return obj as Map<string, string[]>;
         }
@@ -103,7 +109,8 @@ module.exports = function (Posts) {
 
         async function parsePosts(posts, options: option) {
             // The next line calls a function in a module that has not been updated to TS yet
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
+            // eslint-disable-next-line
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-return
             return await Promise.all(posts.map(async (post: PostObjectNew) => {
                 // The next line calls a function in a module that has not been updated to TS yet
                 // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-call
