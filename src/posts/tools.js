@@ -6,15 +6,12 @@ const privileges = require('../privileges');
 
 module.exports = function (Posts) {
     Posts.tools = {};
-
     Posts.tools.delete = async function (uid, pid) {
         return await togglePostDelete(uid, pid, true);
     };
-
     Posts.tools.restore = async function (uid, pid) {
         return await togglePostDelete(uid, pid, false);
     };
-
     async function togglePostDelete(uid, pid, isDelete) {
         const [postData, canDelete] = await Promise.all([
             Posts.getPostData(pid),
@@ -23,13 +20,11 @@ module.exports = function (Posts) {
         if (!postData) {
             throw new Error('[[error:no-post]]');
         }
-
         if (postData.deleted && isDelete) {
             throw new Error('[[error:post-already-deleted]]');
         } else if (!postData.deleted && !isDelete) {
             throw new Error('[[error:post-already-restored]]');
         }
-
         if (!canDelete.flag) {
             throw new Error(canDelete.message);
         }
