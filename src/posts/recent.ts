@@ -1,11 +1,9 @@
 // Need to translate and add condition for if anonymous don't display uid
 
-'use strict';
+import _ = require('lodash');
 
-const _ = require('lodash');
-
-const db = require('../database');
-const privileges = require('../privileges');
+import db = require('../database');
+import privileges = require('../privileges');
 
 
 module.exports = function (Posts) {

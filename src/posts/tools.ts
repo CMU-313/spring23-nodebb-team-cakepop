@@ -1,8 +1,6 @@
 // This is the money train, the place where the function togglePostAnonymous appears
 
-'use strict';
-
-const privileges = require('../privileges');
+import privileges = require('../privileges');
 
 module.exports = function (Posts) {
     Posts.tools = {};
