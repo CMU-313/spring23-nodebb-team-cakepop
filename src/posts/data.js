@@ -10,8 +10,6 @@ const intFields = [
     'replies', 'bookmarks',
 ];
 
-const isAnonymous = 'isAnonymous'
-
 module.exports = function (Posts) {
     Posts.getPostsFields = async function (pids, fields) {
         if (!Array.isArray(pids) || !pids.length) {
