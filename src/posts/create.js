@@ -14,11 +14,14 @@ const utils = require('../utils');
 module.exports = function (Posts) {
     Posts.create = async function (data) {
         // This is an internal method, consider using Topics.reply instead
+        // post data stuff
         const { uid } = data;
         const { tid } = data;
         const { isAnonymous } = data;
         const content = data.content.toString();
         const timestamp = data.timestamp || Date.now();
+
+        // topic data stuff?
         const isMain = data.isMain || false;
 
         if (!uid && parseInt(uid, 10) !== 0) {
@@ -69,6 +72,7 @@ module.exports = function (Posts) {
 
         result = await plugins.hooks.fire('filter:post.get', { post: postData, uid: data.uid });
         result.post.isMain = isMain;
+        result.post.isAnonymous = isAnonymous;
         plugins.hooks.fire('action:post.save', { post: _.clone(result.post) });
         return result.post;
     };
