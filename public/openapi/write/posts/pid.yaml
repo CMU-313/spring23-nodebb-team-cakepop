@@ -67,7 +67,7 @@ get:
                   isAnonymous:
                     type: boolean
                 required:
-                  - pid, uid, tid, content, timestamp, flagID, deleted, upvotes, downvotes, deleterUid, edited
+                  - pid, uid, tid, content, timestamp, flagID, deleted, upvotes, downvotes, deleterUid, edited, isAnonymous
 put:
   tags:
     - posts
