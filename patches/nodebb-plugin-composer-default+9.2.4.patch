@@ -39,6 +39,8 @@ index 46334e7..96d6cb0 100644
  
 -	async function post(post_uuid) {
 +	async function post(post_uuid, isAnonymous) {
++		console.log("post method");
++		console.log({isAnon});
  		var postData = composer.posts[post_uuid];
  		var postContainer = $('.composer[data-uuid="' + post_uuid + '"]');
  		var handleEl = postContainer.find('.handle');
