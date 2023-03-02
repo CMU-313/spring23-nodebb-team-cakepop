@@ -66,8 +66,7 @@ be areas for improvement or oversights on our end.<br>
 6. Create a new post, and instead of pressing the usual submit button, select "Post
 Anonymously" (this will still post, but it will remove the features that make the user
 identifiable)
-7. See that your username and photo are not shown in the UI, though you alone can still 
-see that the post is affiliated with you.<br><br>
+7. See that your username and photo are not shown in the UI!<br><br>
 
 **How did we test?**<br>
 *Coming soon...*
