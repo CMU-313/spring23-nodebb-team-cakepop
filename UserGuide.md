@@ -7,16 +7,17 @@ to search through existing posts. In order to accomplish this, we added a plugin
 has been activated by default, so there should be no work on the part of the user to
 ensure that it works.<br>
 
-**You Test!**
+**How to use it**
 1. Run `$ ./nodebb setup`
 2. Run `$ ./nodebb build`
 3. Run `$ ./nodebb start`
-4. Open NodeBB in browser and create several posts with key words that you would like 
-to search with.
-5. After creating these posts, try searching for terms as you see fit and see how 
+4. Open NodeBB in browser
+5. Create account on NodeBB so that you can create posts (or log in to existing account)
+6. Create several posts with key words that you would like to search with
+7. After creating these posts, try searching for terms as you see fit and see how 
 relevant posts appear after searches are performed.<br>
 
-**How did we test?**
+**How did we test?**<br>
 We did not implement automated tests for this specific functionality. The primary reason 
 is that we simply activated an existing plugin that had existing tests in place already. 
 Upon inspection of these tests in the testing files, it became evident that the work 
@@ -24,4 +25,28 @@ was done for us and there was no need to add extra testing for now. In order to 
 the plugin is automatically activated, we run `$ ./nodebb build` and notice how the 
 console added a line saying that the search plugin has been set to active. Additionally, 
 we were able to visually confirm that the search bar had both appeared and worked as
-expected through manual testing (much like you can do).
+expected through manual testing (much like you can do).<br><br>
+
+
+## Toggle Resolved Button
+This button was added to posts and threads to mark them as resolved to avoid unclosed 
+posts and assist in organizing the posts on the site. In these two sprints, only the UI 
+aspect of the button has been implemented. Clicking the button still does not mark the
+post as resolved.<br>
+
+**How to use it**
+1. Run `$ ./nodebb setup`
+2. Run `$ ./nodebb build`
+3. Run `$ ./nodebb start`
+4. Open NodeBB in browser
+5. Create account on NodeBB so that you can create a post (or log in to existing account)
+6. Create a new post and go to that post's page
+7. Note how at the top right menu of icons near the reply button, there is now a 
+checkmark that is meant to mark a post thread as resolved. You may click the button, 
+but as of right now it is not fully functional and will not do anything.<br>
+
+**How did we test?**<br>
+For the UI of NodeBB, there is not a good way to test through automated testing whether
+something appears to the user. However, we have tested this manually by creating posts
+in various categories as various users to ensure that the button to toggle a post as
+resolved indeed appears.
