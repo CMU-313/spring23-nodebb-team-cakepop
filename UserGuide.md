@@ -69,4 +69,8 @@ identifiable)
 7. See that your username and photo are not shown in the UI!<br><br>
 
 **How did we test?**<br>
-*Coming soon...*
+We added to the overall testing suite that is already enabled through GitHub actions.
+You can view the added tests [here](https://github.com/CMU-313/spring23-nodebb-team-cakepop/commit/3750b0d4cfb5cd92f2a76552ba982856a1a4f28b). These tests cover whether an anonymous post
+is successfully created in such a way that other users cannot view the poster's information.
+We believe that these tests are sufficient because our coverage remains high, and we
+account for all edge cases that could arise.
