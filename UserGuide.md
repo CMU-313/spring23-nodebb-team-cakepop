@@ -49,4 +49,25 @@ but as of right now it is not fully functional and will not do anything.<br>
 For the UI of NodeBB, there is not a good way to test through automated testing whether
 something appears to the user. However, we have tested this manually by creating posts
 in various categories as various users to ensure that the button to toggle a post as
-resolved indeed appears.
+resolved indeed appears.<br><br>
+
+
+## Posting Anonymously
+This feature allows a user to create a post anonymously such that their username and
+profile photo are obscured. This is mostly implemented, but there still of course may
+be areas for improvement or oversights on our end.<br>
+
+**How to use it**
+1. Run `$ ./nodebb setup`
+2. Run `$ ./nodebb build`
+3. Run `$ ./nodebb start`
+4. Open NodeBB in browser
+5. Create account on NodeBB so that you can create a post (or log in to existing account)
+6. Create a new post, and instead of pressing the usual submit button, select "Post
+Anonymously" (this will still post, but it will remove the features that make the user
+identifiable)
+7. See that your username and photo are not shown in the UI, though you alone can still 
+see that the post is affiliated with you.<br><br>
+
+**How did we test?**<br>
+*Coming soon...*
