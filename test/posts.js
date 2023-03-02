@@ -76,6 +76,54 @@ describe('Post\'s', () => {
         });
     });
 
+    it('should not display usernames on posts if anonymous option is selected', async () => {
+        const newUid = await user.create({ username: 'testname' });
+        const postResult = await topics.post({ uid: newUid, cid: cid, title: 'topic title', content: 'test content', isAnonymous: true});
+       
+        assert.equal(postResult.postData.isAnonymous, true);
+        assert.notEqual(postResult.postData.uid, newUid.username)
+
+    });
+
+    it('should display usernames on posts', async () => {
+        const newUid = await user.create({ username: 'testname' });
+        const postResult = await topics.post({ uid: newUid, cid: cid, title: 'topic title', content: 'test content', isAnonymous: false });
+        
+        assert.equal(postResult.postData.isAnonymous, false);
+        assert.equal(postResult.postData.username, newUid.username)
+
+    });
+
+    it('should display anonymous usernames in replies to posts', async () => {
+        const newUid = await user.create({ username: 'testname' });
+        const replyUid = await user.create({ username: 'testreplier' });
+        const postResult = await topics.post({ uid: newUid, cid: cid, title: 'topic title', content: 'test content', isAnonymous: false });
+        
+        assert.equal(postResult.postData.isAnonymous, false);
+        assert.equal(postResult.postData.username, newUid.username)
+
+        const replyData = await topics.reply({ uid: replyUid, tid: postResult.topicData.tid, content: 'firstReply', isAnonymous: true });
+
+        assert.equal(replyData.isAnonymous, true);
+        assert.notEqual(replyData.uid, replyUid.username);
+
+    });
+
+    it('should display real usernames in replies to posts', async () => {
+        const newUid = await user.create({ username: 'testname' });
+        const replyUid = await user.create({ username: 'testreplier' });
+        const postResult = await topics.post({ uid: newUid, cid: cid, title: 'topic title', content: 'test content', isAnonymous: false });
+        
+        assert.equal(postResult.postData.isAnonymous, false);
+        assert.equal(postResult.postData.username, newUid.username)
+
+        const replyData = await topics.reply({ uid: replyUid, tid: postResult.topicData.tid, content: 'firstReply', isAnonymous: false });
+
+        assert.equal(replyData.isAnonymous, false);
+        assert.equal(replyData.uid, replyUid);
+
+    });
+
     it('should update category teaser properly', async () => {
         const util = require('util');
         const getCategoriesAsync = util.promisify(async (callback) => {
