@@ -66,12 +66,15 @@ be areas for improvement or oversights on our end.<br>
 6. Create a new post, and instead of pressing the usual submit button, select "Post
 Anonymously" (this will still post, but it will remove the features that make the user
 identifiable)
-7. See that your username and photo are not shown in the UI!<br><br>
-*the Anonymous button has not been fully implemented due to difficulties syncing frontend functionality with backend functionality
+7. Your post is created!<br><br>
+*The Anonymous button has not been fully implemented due to difficulties syncing frontend functionality with backend functionality. While the profile and username can be hidden
+when tested separately, the submit button has not been fully implemented.
 
 **How did we test?**<br>
 We added to the overall testing suite that is already enabled through GitHub actions.
 You can view the added tests [here](https://github.com/CMU-313/spring23-nodebb-team-cakepop/commit/3750b0d4cfb5cd92f2a76552ba982856a1a4f28b). These tests cover whether an anonymous post
 is successfully created in such a way that other users cannot view the poster's information.
-We believe that these tests are sufficient because our coverage remains high, and we
-account for all edge cases that could arise.
+We believe that these tests are sufficient we account for all edge cases that could arise.
+Right now, our coverage is low due to an issue that we had fixed, but has re-appeared out of
+nowhere. However, we know that we can run NodeBB in the browser with no issues whatsoever,
+so we are unconcerned that there will be major issues in using the website itself.
