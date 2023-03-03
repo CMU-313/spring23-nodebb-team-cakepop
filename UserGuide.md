@@ -67,6 +67,7 @@ be areas for improvement or oversights on our end.<br>
 Anonymously" (this will still post, but it will remove the features that make the user
 identifiable)
 7. See that your username and photo are not shown in the UI!<br><br>
+*the Anonymous button has not been fully implemented due to difficulties syncing frontend functionality with backend functionality
 
 **How did we test?**<br>
 We added to the overall testing suite that is already enabled through GitHub actions.
