@@ -7,7 +7,7 @@ const utils = require('../utils');
 const intFields = [
     'uid', 'pid', 'tid', 'deleted', 'timestamp',
     'upvotes', 'downvotes', 'deleterUid', 'edited',
-    'replies', 'bookmarks',
+    'replies', 'bookmarks', 'isAnonymous',
 ];
 
 module.exports = function (Posts) {
@@ -66,6 +66,10 @@ function modifyPost(post, fields) {
         }
         if (post.hasOwnProperty('edited')) {
             post.editedISO = post.edited !== 0 ? utils.toISOString(post.edited) : '';
+        }
+        // from team dj-kew
+        if (post.hasOwnProperty('isAnon')) {
+            post.isAnon = post.isAnon === 'true';
         }
     }
 }
