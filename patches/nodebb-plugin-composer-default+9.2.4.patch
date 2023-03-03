@@ -1,5 +1,5 @@
 diff --git a/node_modules/nodebb-plugin-composer-default/static/lib/composer.js b/node_modules/nodebb-plugin-composer-default/static/lib/composer.js
-index 46334e7..96d6cb0 100644
+index 46334e7..60a3779 100644
 --- a/node_modules/nodebb-plugin-composer-default/static/lib/composer.js
 +++ b/node_modules/nodebb-plugin-composer-default/static/lib/composer.js
 @@ -320,6 +320,7 @@ define('composer', [
@@ -33,18 +33,22 @@ index 46334e7..96d6cb0 100644
  				post(post_uuid);
  			});
  		});
-@@ -622,7 +632,7 @@ define('composer', [
+@@ -622,7 +632,13 @@ define('composer', [
  		}, 20);
  	}
  
 -	async function post(post_uuid) {
++	// Taken from DJ-KEW team
++	// async function post(post_uuid, isAnonymous) {
++	// 	console.log("post method");
++	// 	onsole.log({isAnonymous});
++	// }
++	
 +	async function post(post_uuid, isAnonymous) {
-+		console.log("post method");
-+		console.log({isAnon});
  		var postData = composer.posts[post_uuid];
  		var postContainer = $('.composer[data-uuid="' + post_uuid + '"]');
  		var handleEl = postContainer.find('.handle');
-@@ -631,6 +641,7 @@ define('composer', [
+@@ -631,6 +647,7 @@ define('composer', [
  		var thumbEl = postContainer.find('input#topic-thumb-url');
  		var onComposeRoute = postData.hasOwnProperty('template') && postData.template.compose === true;
  		const submitBtn = postContainer.find('.composer-submit');
@@ -52,7 +56,7 @@ index 46334e7..96d6cb0 100644
  
  		titleEl.val(titleEl.val().trim());
  		bodyEl.val(utils.rtrim(bodyEl.val()));
-@@ -696,6 +707,7 @@ define('composer', [
+@@ -696,6 +713,7 @@ define('composer', [
  				cid: categoryList.getSelectedCid(),
  				tags: tags.getTags(post_uuid),
  				timestamp: scheduler.getTimestamp(),
@@ -60,7 +64,7 @@ index 46334e7..96d6cb0 100644
  			};
  		} else if (action === 'posts.reply') {
  			route = `/topics/${postData.tid}`;
-@@ -705,6 +717,7 @@ define('composer', [
+@@ -705,6 +723,7 @@ define('composer', [
  				handle: handleEl ? handleEl.val() : undefined,
  				content: bodyEl.val(),
  				toPid: postData.toPid,
@@ -68,7 +72,7 @@ index 46334e7..96d6cb0 100644
  			};
  		} else if (action === 'posts.edit') {
  			method = 'put';
-@@ -718,6 +731,7 @@ define('composer', [
+@@ -718,6 +737,7 @@ define('composer', [
  				thumb: thumbEl.val() || '',
  				tags: tags.getTags(post_uuid),
  				timestamp: scheduler.getTimestamp(),
@@ -76,7 +80,7 @@ index 46334e7..96d6cb0 100644
  			};
  		}
  		var submitHookData = {
-@@ -741,6 +755,7 @@ define('composer', [
+@@ -741,6 +761,7 @@ define('composer', [
  		api[method](route, composerData)
  			.then((data) => {
  				submitBtn.removeAttr('disabled');
