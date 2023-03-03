@@ -67,5 +67,9 @@ function modifyPost(post, fields) {
         if (post.hasOwnProperty('edited')) {
             post.editedISO = post.edited !== 0 ? utils.toISOString(post.edited) : '';
         }
+        // from team dj-kew
+        if (post.hasOwnProperty('isAnon')) {
+            post.isAnon = post.isAnon === 'true';
+        }
     }
 }
