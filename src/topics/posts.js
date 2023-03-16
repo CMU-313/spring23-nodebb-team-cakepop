@@ -24,24 +24,7 @@ module.exports = function (Topics) {
         if (!topicData) {
             return [];
         }
-
-        // let code = `if (!topicData) {
-        //     return [];
-        // }`;
-        // let stage = new Iroh.stage(code);
-
-        // stage.addListener(Iroh.IF)
-        // .on("enter", function(e) {
-        // // we enter the if
-        //     console.log(" ".repeat(e.indent) + "if enter");
-        // })
-        // .on("leave", function(e) {
-        // // we leave the if
-        //     console.log(" ".repeat(e.indent) + "if leave");
-        // });
-
-        // eval(stage.script);
-
+        
         let repliesStart = start;
         let repliesStop = stop;
         if (stop > 0) {
