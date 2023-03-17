@@ -24,7 +24,7 @@ module.exports = function (Topics) {
         if (!topicData) {
             return [];
         }
-
+        
         let repliesStart = start;
         let repliesStop = stop;
         if (stop > 0) {
