@@ -16,7 +16,7 @@
         "coverage": "nyc report --reporter=text-lcov > ./coverage/lcov.info",
         "coveralls": "nyc report --reporter=text-lcov | coveralls && rm -r coverage",
         "postinstall": "patch-package",
-        "iroh": "node iroh/utils.js"
+        "iroh": "node iroh/index.js"
     },
     "nyc": {
         "exclude": [
