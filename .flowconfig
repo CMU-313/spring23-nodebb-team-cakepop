@@ -1,0 +1,14 @@
+[ignore]
+.*node_modules/.*
+
+[include]
+
+[libs]
+
+[lints]
+
+[options]
+include_warnings=true
+sharedmemory.heap_size=3221225472
+
+[strict]
