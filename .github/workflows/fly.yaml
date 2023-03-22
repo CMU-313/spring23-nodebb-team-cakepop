@@ -36,7 +36,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - run: cp install/package.json package.json
-      - run: cp install/new_config.json config.json
 
       - name: Install Node
         uses: actions/setup-node@v3
