@@ -61,9 +61,9 @@ jobs:
               "admin:password:confirm": "hAN3Eg8W",
 
               "database": "redis",
-              "redis:host": "fly-team-cakepop-redis.upstash.io",
+              "redis:host": "127.0.0.1",
               "redis:port": 6379,
-              "redis:password": "1ffa3d54fcbc438eacc929e7a8f8bfe7",
+              "redis:password": "",
               "redis:database": 0
             }
           CI: >-
