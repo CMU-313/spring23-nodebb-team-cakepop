@@ -4,7 +4,6 @@
     {{{each widgets.header}}}
     {{widgets.header.html}}
     {{{end}}}
-    <h1>Hello World</h1>
 </div>
 
 <div class="cover" component="account/cover" style="background-image: url({cover:url}); background-position: {cover:position};">
