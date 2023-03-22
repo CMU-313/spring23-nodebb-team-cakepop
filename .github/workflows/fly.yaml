@@ -3,10 +3,10 @@ name: Fly Deploy
 on:
   push:
     branches:
-      - main
+      - add-search-bar-ui
   pull_request:
     branches:
-      - main
+      - add-search-bar-ui
 
 jobs:
   deploy:
