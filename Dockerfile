@@ -15,6 +15,7 @@ RUN npm install --only=prod && \
     npm cache clean --force
 
 COPY --chown=node:node . /usr/src/app
+COPY --chown=node:node install/db_config.json /usr/src/app/config.json
 
 ENV NODE_ENV=production \
     daemon=false \
@@ -22,4 +23,4 @@ ENV NODE_ENV=production \
 
 EXPOSE 4567
 
-CMD test -n "${SETUP}" && ./nodebb setup || node ./nodebb start
+CMD node ./nodebb build; node ./nodebb start
