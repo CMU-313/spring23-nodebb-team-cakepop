@@ -1,19 +1,14 @@
 <div class="clearfix post-header">
     <div class="icon pull-left">
         <a href="<!-- IF posts.user.userslug -->{config.relative_path}/user/{posts.user.userslug}<!-- ELSE -->#<!-- ENDIF posts.user.userslug -->">
-            <!-- IF posts.isAnonymous --> <img style="max-height: 50px; max-width: 50px; margin-right: 50px;" src="https://www.pngkey.com/png/full/503-5035055_a-festival-celebrating-tractors-profile-picture-placeholder-round.png" alt="W3Schools.com">
-            <!-- ELSE --> {buildAvatar(posts.user, "sm2x", true, "", "user/picture")}
-            <!-- ENDIF posts.isAnonymous -->
-            
+            {buildAvatar(posts.user, "sm2x", true, "", "user/picture")}
             <i component="user/status" class="fa fa-circle status {posts.user.status}" title="[[global:{posts.user.status}]]"></i>
         </a>
     </div>
 
     <small class="pull-left">
         <strong>
-            <!-- IF posts.isAnonymous --> <i>username hidden</i>
-            <!-- ELSE --> <a href="<!-- IF posts.user.userslug -->{config.relative_path}/user/{posts.user.userslug}<!-- ELSE -->#<!-- ENDIF posts.user.userslug -->" itemprop="author" data-username="{posts.user.username}" data-uid="{posts.user.uid}">{posts.user.displayname}</a>
-            <!-- ENDIF !posts.isAnonymous -->
+            <a href="<!-- IF posts.user.userslug -->{config.relative_path}/user/{posts.user.userslug}<!-- ELSE -->#<!-- ENDIF posts.user.userslug -->" itemprop="author" data-username="{posts.user.username}" data-uid="{posts.user.uid}">{posts.user.displayname}</a>
         </strong>
 
         <!-- IMPORT partials/topic/badge.tpl -->
