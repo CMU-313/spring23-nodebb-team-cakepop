@@ -1,0 +1,12 @@
+{
+    "url": "http://team-cakepop.fly.dev",
+    "secret": "5fbc73eb-26db-408b-bfb5-801d22a8d7f0",
+    "database": "redis",
+    "port": "4567",
+    "redis": {
+        "host": "fly-team-cakepop-redis.upstash.io",
+        "port": "6379",
+        "password": "1ffa3d54fcbc438eacc929e7a8f8bfe7",
+        "database": "0"
+    }
+}
