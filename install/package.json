@@ -12,9 +12,10 @@
     "scripts": {
         "start": "npx tsc && node loader.js",
         "lint": "npx tsc && eslint --cache ./nodebb .",
-        "test": "jasmine && npx tsc && nyc --reporter=html --reporter=text-summary mocha",
+        "test": "npx tsc && nyc --reporter=html --reporter=text-summary mocha",
         "coverage": "nyc report --reporter=text-lcov > ./coverage/lcov.info",
-        "coveralls": "nyc report --reporter=text-lcov | coveralls && rm -r coverage"
+        "coveralls": "nyc report --reporter=text-lcov | coveralls && rm -r coverage",
+        "jasmine": "jasmine"
     },
     "nyc": {
         "exclude": [
