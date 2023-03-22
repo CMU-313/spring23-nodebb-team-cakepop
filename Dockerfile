@@ -1,7 +1,10 @@
 FROM node:lts
 
 RUN mkdir -p /usr/src/app && \
-    chown -R node:node /usr/src/app
+    chown -R node:node /usr/src/app \
+    --mount=type=secret,id=DB_CONFIG \
+    export DB_CONFIG=$(cat /run/secrets/DB_CONFIG) && \
+    yarn gen
 WORKDIR /usr/src/app
 
 ARG NODE_ENV
@@ -15,7 +18,7 @@ RUN npm install --only=prod && \
     npm cache clean --force
 
 COPY --chown=node:node . /usr/src/app
-COPY --chown=node:node MYSECRET /usr/src/app/config.json
+COPY --chown=node:node /run/secrets/DB_CONFIG /usr/src/app/config.json
 
 ENV NODE_ENV=production \
     daemon=false \
