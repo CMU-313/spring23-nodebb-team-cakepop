@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - add-search-bar-ui
+      - standard-js
   pull_request:
     branches:
       - add-search-bar-ui
