@@ -11,13 +11,14 @@ on:
 jobs:
 
   deploy:
-    name: create-json
+    - name: create-json
       id: create-json
       uses: jsdaniell/create-json@v1.2.2
       with:
         name: "new_config.json"
         json: ${{ secrets.DB_CONFIG }}
-    name: Deploy app
+    
+    - name: Deploy app
     
     permissions:
       checks: write  # for coverallsapp/github-action to create new checks
