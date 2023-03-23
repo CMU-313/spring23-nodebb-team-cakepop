@@ -2,9 +2,8 @@ FROM node:lts
 
 RUN mkdir -p /usr/src/app && \
     chown -R node:node /usr/src/app \
-    --mount=type=secret,id=DB_CONFIG \
-    export DB_CONFIG=$(cat /run/secrets/DB_CONFIG) && \
-    echo $DB_CONFIG
+    --mount=type=secret,id=db_config \
+    cat /run/secrets/db_config
 
 WORKDIR /usr/src/app
 

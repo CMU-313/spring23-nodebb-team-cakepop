@@ -26,5 +26,5 @@ jobs:
           platforms: linux/amd64,linux/arm64
           tags: user/app:latest
           secrets: |
-            "DB_CONFIG=${{ secrets.DB_CONFIG }}"
+            "db_config=${{ secrets.DB_CONFIG }}"
             
