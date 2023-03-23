@@ -4,7 +4,8 @@ RUN mkdir -p /usr/src/app && \
     chown -R node:node /usr/src/app \
     --mount=type=secret,id=DB_CONFIG \
     export DB_CONFIG=$(cat /run/secrets/DB_CONFIG) && \
-    yarn gen
+    echo $DB_CONFIG
+
 WORKDIR /usr/src/app
 
 ARG NODE_ENV
