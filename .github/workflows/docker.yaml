@@ -12,6 +12,12 @@ jobs:
       -
         name: Checkout
         uses: actions/checkout@v3
+      - name: create-json
+        id: create-json
+        uses: jsdaniell/create-json@1.1.2
+        with:
+          name: "new_config.json"
+          json: ${{ secrets.DB_CONFIG }}
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v2

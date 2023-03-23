@@ -1,9 +1,7 @@
 FROM node:lts
 
 RUN mkdir -p /usr/src/app && \
-    chown -R node:node /usr/src/app \
-    --mount=type=secret,id=db_config \
-    cat /run/secrets/db_config
+    chown -R node:node /usr/src/app
 
 WORKDIR /usr/src/app
 
@@ -18,7 +16,7 @@ RUN npm install --only=prod && \
     npm cache clean --force
 
 COPY --chown=node:node . /usr/src/app
-COPY --chown=node:node /run/secrets/db_config /usr/src/app/config.json
+COPY --chown=node:node /usr/src/app/new_config.json /usr/src/app/config.json
 
 ENV NODE_ENV=production \
     daemon=false \
