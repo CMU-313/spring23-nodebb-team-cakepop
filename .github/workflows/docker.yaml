@@ -4,13 +4,10 @@ on:
     branches:
       - add-search-bar-ui
 
-jobs:
-  add_secrets_to_docker:
-    steps:
-      id: docker_build
-      uses: docker/build-push-action@v2
-      with:
-        push: true
-        tags: g2idocker/auth:latest
-        secrets: |
-            "DB_CONFIG=${{ secrets.DB_CONFIG }}"
+id: docker_build
+uses: docker/build-push-action@v2
+with:
+  push: true
+  tags: g2idocker/auth:latest
+  secrets: |
+      "DB_CONFIG=${{ secrets.DB_CONFIG }}"
