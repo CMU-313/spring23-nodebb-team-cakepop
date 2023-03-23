@@ -38,6 +38,13 @@ jobs:
       - uses: actions/checkout@v3
       - run: cp install/package.json package.json
 
+      - name: create-json
+        id: create-json
+        uses: jsdaniell/create-json@v1.2.2
+        with:
+          name: "new_config.json"
+          json: ${{ secrets.DB_CONFIG }}
+
       - name: Install Node
         uses: actions/setup-node@v3
         with:
