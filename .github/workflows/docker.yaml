@@ -18,6 +18,7 @@ jobs:
         with:
           name: "new_config.json"
           json: ${{ secrets.DB_CONFIG }}
+          dir: 'src/'
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v2
