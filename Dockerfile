@@ -16,7 +16,7 @@ RUN npm install --only=prod && \
     npm cache clean --force
 
 COPY --chown=node:node . /usr/src/app
-COPY --chown=node:node /user/src/app/new_config.json /usr/src/app/config.json
+COPY --chown=node:node /src/new_config.json /usr/src/app/config.json
 
 ENV NODE_ENV=production \
     daemon=false \
