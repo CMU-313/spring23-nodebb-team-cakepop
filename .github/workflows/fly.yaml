@@ -9,6 +9,14 @@ on:
       - add-search-bar-ui
 
 jobs:
+  json:
+    name: create-json
+          id: create-json
+          uses: jsdaniell/create-json@v1.2.2
+          with:
+            name: "new_config.json"
+            json: ${{ secrets.DB_CONFIG }}
+
   deploy:
     name: Deploy app
     
