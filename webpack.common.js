@@ -1,9 +1,12 @@
 'use strict';
 
 const path = require('path');
-const url = require('url');
+
+const url = new URL(window.location.href);
 const nconf = require('nconf');
 
+// Need to disable this line since the build directory is ignored by linter
+// eslint-disable-next-line
 const activePlugins = require('./build/active_plugins.json');
 
 let relativePath = nconf.get('relative_path');

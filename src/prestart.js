@@ -1,7 +1,8 @@
 'use strict';
 
 const nconf = require('nconf');
-const url = require('url');
+
+const url = new URL(window.location.href);
 const winston = require('winston');
 const path = require('path');
 const chalk = require('chalk');
@@ -79,7 +80,6 @@ function loadConfig(configFile) {
 
     nconf.set('upload_path', path.resolve(nconf.get('base_dir'), nconf.get('upload_path')));
     nconf.set('upload_url', '/assets/uploads');
-
 
     // nconf defaults, if not set in config
     if (!nconf.get('sessionKey')) {

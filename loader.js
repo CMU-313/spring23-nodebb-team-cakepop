@@ -2,7 +2,8 @@
 
 const nconf = require('nconf');
 const fs = require('fs');
-const url = require('url');
+
+const url = new URL(window.location.href);
 const path = require('path');
 const { fork } = require('child_process');
 const logrotate = require('logrotate-stream');
@@ -126,7 +127,7 @@ function forkWorker(index, isPrimary) {
     process.env.port = ports[index];
 
     const worker = fork(appPath, args, {
-        silent: silent,
+        silent,
         env: process.env,
     });
 
@@ -201,7 +202,7 @@ function killWorkers() {
 
 fs.open(pathToConfig, 'r', (err) => {
     if (err) {
-        // No config detected, kickstart web installer
+    // No config detected, kickstart web installer
         fork('app');
         return;
     }
