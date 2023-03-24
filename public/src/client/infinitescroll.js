@@ -1,9 +1,8 @@
 'use strict';
 
-
 define('forum/infinitescroll', ['hooks', 'alerts'], function (hooks, alerts) {
     const scroll = {};
-    let callback;
+    let callback_func;
     let previousScrollTop = 0;
     let loadingMore = false;
     let container;
@@ -12,17 +11,17 @@ define('forum/infinitescroll', ['hooks', 'alerts'], function (hooks, alerts) {
     scroll.init = function (el, cb) {
         const $body = $('body');
         if (typeof el === 'function') {
-            callback = el;
+            callback_func = el;
             container = $body;
         } else {
-            callback = cb;
+            callback_func = cb;
             container = el || $body;
         }
         previousScrollTop = $(window).scrollTop();
         $(window).off('scroll', startScrollTimeout).on('scroll', startScrollTimeout);
 
         if ($body.height() <= $(window).height()) {
-            callback(1);
+            callback_func(1);
         }
     };
 
@@ -53,11 +52,11 @@ define('forum/infinitescroll', ['hooks', 'alerts'], function (hooks, alerts) {
         const direction = currentScrollTop > previousScrollTop ? 1 : -1;
 
         if (scrollPercent < top && currentScrollTop < previousScrollTop) {
-            callback(direction);
+            callback_func(direction);
         } else if (scrollPercent > bottom && currentScrollTop > previousScrollTop) {
-            callback(direction);
+            callback_func(direction);
         } else if (scrollPercent < 0 && direction > 0 && viewportHeight < 0) {
-            callback(direction);
+            callback_func(direction);
         }
 
         previousScrollTop = currentScrollTop;
@@ -69,7 +68,7 @@ define('forum/infinitescroll', ['hooks', 'alerts'], function (hooks, alerts) {
         }
         loadingMore = true;
 
-        const hookData = { method: method, data: data };
+        const hookData = { method, data };
         hooks.fire('action:infinitescroll.loadmore', hookData);
 
         socket.emit(hookData.method, hookData.data, function (err, data) {
@@ -89,7 +88,7 @@ define('forum/infinitescroll', ['hooks', 'alerts'], function (hooks, alerts) {
         }
         loadingMore = true;
         const url = config.relative_path + '/api' + location.pathname.replace(new RegExp('^' + config.relative_path), '');
-        const hookData = { url: url, data: data };
+        const hookData = { url, data };
         hooks.fire('action:infinitescroll.loadmore.xhr', hookData);
 
         $.get(url, data, function (data) {

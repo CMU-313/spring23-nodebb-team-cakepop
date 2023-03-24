@@ -4,6 +4,8 @@ const path = require('path');
 const url = require('url');
 const nconf = require('nconf');
 
+// Need to disable this line since the build directory is ignored by linter
+// eslint-disable-next-line
 const activePlugins = require('./build/active_plugins.json');
 
 let relativePath = nconf.get('relative_path');
@@ -12,6 +14,7 @@ if (relativePath === undefined) {
         file: path.resolve(__dirname, nconf.any(['config', 'CONFIG']) || 'config.json'),
     });
 
+    // eslint-disable-next-line
     const urlObject = url.parse(nconf.get('url'));
     relativePath = urlObject.pathname !== '/' ? urlObject.pathname.replace(/\/+$/, '') : '';
 }

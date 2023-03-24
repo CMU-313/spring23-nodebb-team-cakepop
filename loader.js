@@ -126,7 +126,7 @@ function forkWorker(index, isPrimary) {
     process.env.port = ports[index];
 
     const worker = fork(appPath, args, {
-        silent: silent,
+        silent,
         env: process.env,
     });
 
@@ -150,6 +150,7 @@ function getPorts() {
         console.log('[cluster] url is undefined, please check your config.json');
         process.exit();
     }
+    // eslint-disable-next-line
     const urlObject = url.parse(_url);
     let port = nconf.get('PORT') || nconf.get('port') || urlObject.port || 4567;
     if (!Array.isArray(port)) {
@@ -201,7 +202,7 @@ function killWorkers() {
 
 fs.open(pathToConfig, 'r', (err) => {
     if (err) {
-        // No config detected, kickstart web installer
+    // No config detected, kickstart web installer
         fork('app');
         return;
     }
