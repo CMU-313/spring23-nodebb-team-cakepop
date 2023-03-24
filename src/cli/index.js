@@ -109,6 +109,7 @@ program
     .description('Start the NodeBB server')
     .action(() => {
         require('./running').start(program.opts());
+        require('./manage').activate('nodebb-plugin-dbsearch');
     });
 program
     .command('slog', null, {
