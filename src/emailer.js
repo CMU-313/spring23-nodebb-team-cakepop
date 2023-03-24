@@ -6,8 +6,7 @@ const Benchpress = require('benchpressjs');
 const nodemailer = require('nodemailer');
 const wellKnownServices = require('nodemailer/lib/well-known/services');
 const { htmlToText } = require('html-to-text');
-
-const url = new URL(window.location.href);
+const url = require('url');
 const path = require('path');
 const fs = require('fs');
 const _ = require('lodash');
@@ -56,7 +55,7 @@ const smtpSettingsChanged = (config) => {
 
 const getHostname = () => {
     const configUrl = nconf.get('url');
-    const parsed = url.parse(configUrl);
+    const parsed = url.URL(configUrl);
     return parsed.hostname;
 };
 

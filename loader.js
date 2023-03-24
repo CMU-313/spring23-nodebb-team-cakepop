@@ -2,8 +2,7 @@
 
 const nconf = require('nconf');
 const fs = require('fs');
-
-const url = new URL(window.location.href);
+const url = require('url');
 const path = require('path');
 const { fork } = require('child_process');
 const logrotate = require('logrotate-stream');
@@ -151,7 +150,7 @@ function getPorts() {
         console.log('[cluster] url is undefined, please check your config.json');
         process.exit();
     }
-    const urlObject = url.parse(_url);
+    const urlObject = url.URL(_url);
     let port = nconf.get('PORT') || nconf.get('port') || urlObject.port || 4567;
     if (!Array.isArray(port)) {
         port = [port];

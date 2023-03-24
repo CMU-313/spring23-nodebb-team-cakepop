@@ -1,6 +1,6 @@
 'use strict';
 
-const url = new URL(window.location.href);
+const url = require('url');
 
 const plugins = require('../plugins');
 const meta = require('../meta');
@@ -32,7 +32,7 @@ async function rewrite(req, res, next) {
 
     let parsedUrl;
     try {
-        parsedUrl = url.parse(route, true);
+        parsedUrl = url.URL(route, true);
     } catch (err) {
         return next(err);
     }

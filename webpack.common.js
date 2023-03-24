@@ -1,8 +1,7 @@
 'use strict';
 
 const path = require('path');
-
-const url = new URL(window.location.href);
+const url = require('url');
 const nconf = require('nconf');
 
 // Need to disable this line since the build directory is ignored by linter
@@ -15,7 +14,7 @@ if (relativePath === undefined) {
         file: path.resolve(__dirname, nconf.any(['config', 'CONFIG']) || 'config.json'),
     });
 
-    const urlObject = url.parse(nconf.get('url'));
+    const urlObject = url.URL(nconf.get('url'));
     relativePath = urlObject.pathname !== '/' ? urlObject.pathname.replace(/\/+$/, '') : '';
 }
 

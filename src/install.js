@@ -1,8 +1,7 @@
 'use strict';
 
 const fs = require('fs');
-
-const url = new URL(window.location.href);
+const url = require('url');
 const path = require('path');
 const prompt = require('prompt');
 const winston = require('winston');
@@ -210,7 +209,7 @@ async function completeConfigSetup(config) {
     }
 
     // If port is explicitly passed via install vars, use it. Otherwise, glean from url if set.
-    const urlObj = url.parse(config.url);
+    const urlObj = url.URL(config.url);
     if (urlObj.port && (!install.values || !install.values.hasOwnProperty('port'))) {
         config.port = urlObj.port;
     }

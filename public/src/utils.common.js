@@ -590,10 +590,10 @@ const utils = {
         if (options.url && !options.url.startsWith('http')) {
             // relative path passed in
             options.url = options.url.replace(new RegExp(`/?${config.relative_path.slice(1)}/`, 'g'), '');
-            url = new URL(document.location);
+            url = url.URL(document.location);
             url.pathname = options.url;
         } else {
-            url = new URL(options.url || document.location);
+            url = url.URL(options.url || document.location);
         }
         let params = url.searchParams;
 

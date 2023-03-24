@@ -1,6 +1,6 @@
 'use strict';
 
-const url = new URL(window.location.href);
+const url = require('url');
 const user = require('../user');
 const topics = require('../topics');
 const posts = require('../posts');
@@ -26,7 +26,7 @@ exports.buildReqObject = (req, payload) => {
     const referer = headers.referer || '';
 
     if (!host) {
-        host = url.parse(referer).host || '';
+        host = url.URL(referer).host || '';
     }
 
     return {

@@ -1,8 +1,7 @@
 'use strict';
 
 const nconf = require('nconf');
-
-const url = new URL(window.location.href);
+const url = require('url');
 const winston = require('winston');
 const sanitize = require('sanitize-html');
 const _ = require('lodash');
@@ -85,7 +84,7 @@ module.exports = function (Posts) {
         while (current !== null) {
             if (current[1]) {
                 try {
-                    parsed = url.parse(current[1]);
+                    parsed = url.URL(current[1]);
                     if (!parsed.protocol) {
                         if (current[1].startsWith('/')) {
                             // Internal link
