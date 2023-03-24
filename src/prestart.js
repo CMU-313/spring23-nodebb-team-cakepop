@@ -87,7 +87,7 @@ function loadConfig(configFile) {
 
     if (nconf.get('url')) {
         nconf.set('url', nconf.get('url').replace(/\/$/, ''));
-        nconf.set('url_parsed', url.URL(nconf.get('url')));
+        nconf.set('url_parsed', new url.URL(nconf.get('url')));
         // Parse out the relative_url and other goodies from the configured URL
         const urlObject = new url.URL(nconf.get('url'));
         const relativePath = urlObject.pathname !== '/' ? urlObject.pathname.replace(/\/+$/, '') : '';
