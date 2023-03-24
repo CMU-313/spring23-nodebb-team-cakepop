@@ -28,6 +28,7 @@
             "eslint --fix"
         ]
     },
+    "standardx" : {},
     "dependencies": {
         "@adactive/bootstrap-tagsinput": "0.8.2",
         "@isaacs/ttlcache": "1.2.1",
