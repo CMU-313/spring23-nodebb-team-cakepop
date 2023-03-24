@@ -20,6 +20,8 @@ PostObject:
       type: number
     downvotes:
       type: number
+    is Anonymous:
+      type: boolean
     votes:
       type: number
     timestampISO:

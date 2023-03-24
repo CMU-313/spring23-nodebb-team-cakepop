@@ -4,6 +4,15 @@
     <div component="category/posts">
         <a class="background-link" href="{config.relative_path}/topic/{../topic.slug}<!-- IF ../index -->/{../index}<!-- ENDIF ../index -->"></a>
         <p>
+            <!-- IF posts.isAnonymous -->
+            <strong>
+                <div itemprop="author">Anonymous Cow</div>
+            </strong>
+            <!-- ELSE -->
+            <strong>
+                <a href="<!-- IF posts.user.userslug -->{config.relative_path}/user/{posts.user.userslug}<!-- ELSE -->#<!-- ENDIF posts.user.userslug -->" itemprop="author" data-username="{posts.user.username}" data-uid="{posts.user.uid}">{posts.user.displayname}</a>
+            </strong>
+            <!-- ENDIF -->
             <a href="{config.relative_path}/user/{../user.userslug}">{buildAvatar(posts.user, "sm", true)}</a>
             <a class="permalink" href="{config.relative_path}/topic/{../topic.slug}<!-- IF ../index -->/{../index}<!-- ENDIF ../index -->">
                 <small class="timeago" title="{../timestampISO}"></small>

@@ -64,6 +64,10 @@ get:
                     type: boolean
                   downvoted:
                     type: boolean
+                  isAnonymous:
+                    type: boolean
+                required:
+                  - pid, uid, tid, content, timestamp, flagID, deleted, upvotes, downvotes, deleterUid, edited
 put:
   tags:
     - posts

@@ -7,6 +7,16 @@
     <button component="topic/mark-unread" class="btn btn-sm btn-default" title="[[topic:mark_unread]]">
         <i class="fa fa-fw fa-inbox"></i><span class="visible-sm-inline visible-md-inline visible-lg-inline"></span>
     </button>
+    <!-- IF !resolved -->
+        <button component="topic/mark-resolved" class="btn btn-sm btn-default" title="[[topic:mark_resolved]]">
+            <i class="fa fa-fw fa-check"></i><span class=visible-sm-inline visible-md-inline visible-lg-inline"></span>
+        </button>
+    <!-- ENDIF resolved -->
+    <!-- IF resolved -->
+        <button component="topic/mark-unresolved" class="btn btn-sm btn-default" title="[[topic:mark_unresolved]]">
+            <i class="fa fa-fw fa-check"></i><span class=visible-sm-inline visible-md-inline visible-lg-inline"></span>
+        </button>
+    <!-- ENDIF !resolved -->
     <!-- ENDIF loggedIn -->
 
     <!-- IMPORT partials/topic/watch.tpl -->

@@ -1,18 +1,26 @@
-'use strict';
-
-const _ = require('lodash');
-
-const meta = require('../meta');
-const db = require('../database');
-const plugins = require('../plugins');
-const user = require('../user');
-const topics = require('../topics');
-const categories = require('../categories');
-const groups = require('../groups');
-const utils = require('../utils');
-
+"use strict";
+// taken from PR #91 in class NodeBB repo, author: @ziyanwang1
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const _ = require("lodash");
+const meta = require("../meta");
+const db = require("../database");
+const plugins = require("../plugins");
+const user = require("../user");
+const topics = require("../topics");
+const categories = require("../categories");
+const groups = require("../groups");
+const utils = require("../utils");
 module.exports = function (Posts) {
-    Posts.create = async function (data) {
+Posts.create = async function (data) {
     // This is an internal method, consider using Topics.reply instead
         const { uid } = data;
         const { tid } = data;
@@ -70,14 +78,4 @@ module.exports = function (Posts) {
         plugins.hooks.fire('action:post.save', { post: _.clone(result.post) });
         return result.post;
     };
-
-    async function addReplyTo(postData, timestamp) {
-        if (!postData.toPid) {
-            return;
-        }
-        await Promise.all([
-            db.sortedSetAdd(`pid:${postData.toPid}:replies`, timestamp, postData.pid),
-            db.incrObjectField(`post:${postData.toPid}`, 'replies'),
-        ]);
-    }
 };

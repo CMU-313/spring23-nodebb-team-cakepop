@@ -16,6 +16,7 @@
         "coverage": "nyc report --reporter=text-lcov > ./coverage/lcov.info",
         "coveralls": "nyc report --reporter=text-lcov | coveralls && rm -r coverage",
         "standardx": "standardx"
+        "postinstall": "patch-package"
     },
     "nyc": {
         "exclude": [
@@ -172,7 +173,7 @@
         "nyc": "15.1.0",
         "smtp-server": "3.11.0",
         "standardx": "*",
-        "typescript": "^4.9.4"
+        "patch-package": "6.5.1"
     },
     "resolutions": {
         "*/jquery": "3.6.3"
