@@ -389,7 +389,7 @@ ajaxify.widgets = { render };
         });
     };
 
-    ajaxify.loadData = function (url, callback) {
+    ajaxify.loadData = function (url, callback_func) {
         url = ajaxify.removeRelativePath(url);
 
         hooks.fire('action:ajaxify.loadingData', { url });
@@ -406,8 +406,7 @@ ajaxify.widgets = { render };
                 }
 
                 if (xhr.getResponseHeader('X-Redirect')) {
-                    // eslint-disable-next-line
-                    return callback({
+                    return callback_func({
                         data: {
                             status: 302,
                             responseJSON: data,
@@ -421,7 +420,7 @@ ajaxify.widgets = { render };
 
                 hooks.fire('action:ajaxify.dataLoaded', { url, data });
 
-                callback(null, data);
+                callback_func(null, data);
             },
             error: function (data, textStatus) {
                 if (data.status === 0 && textStatus === 'error') {
@@ -429,8 +428,7 @@ ajaxify.widgets = { render };
                     data.responseJSON = data.responseJSON || {};
                     data.responseJSON.error = '[[error:no-connection]]';
                 }
-                // eslint-disable-next-line
-                callback({
+                callback_func({
                     data,
                     textStatus,
                 });

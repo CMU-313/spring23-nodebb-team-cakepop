@@ -114,7 +114,7 @@ async function onMessage(socket, payload) {
 
     const eventName = payload.data[0];
     const params = typeof payload.data[1] === 'function' ? {} : payload.data[1];
-    const callback = typeof payload.data[payload.data.length - 1] === 'function' ? payload.data[payload.data.length - 1] : function () {};
+    const callback_func = typeof payload.data[payload.data.length - 1] === 'function' ? payload.data[payload.data.length - 1] : function () {};
 
     if (!eventName) {
         return winston.warn('[socket.io] Empty method name');
@@ -134,8 +134,7 @@ async function onMessage(socket, payload) {
             winston.warn(`[socket.io] Unrecognized message: ${eventName}`);
         }
         const escapedName = validator.escape(String(eventName));
-        // eslint-disable-next-line
-        return callback({ message: `[[error:invalid-event, ${escapedName}]]` });
+        return callback_func({ message: `[[error:invalid-event, ${escapedName}]]` });
     }
 
     socket.previousEvents = socket.previousEvents || [];
@@ -159,16 +158,15 @@ async function onMessage(socket, payload) {
 
         if (methodToCall.constructor && methodToCall.constructor.name === 'AsyncFunction') {
             const result = await methodToCall(socket, params);
-            callback(null, result);
+            callback_func(null, result);
         } else {
             methodToCall(socket, params, (err, result) => {
-                callback(err ? { message: err.message } : null, result);
+                callback_func(err ? { message: err.message } : null, result);
             });
         }
     } catch (err) {
         winston.error(`${eventName}\n${err.stack ? err.stack : err.message}`);
-        // eslint-disable-next-line
-        callback({ message: err.message });
+        callback_func({ message: err.message });
     }
 }
 
