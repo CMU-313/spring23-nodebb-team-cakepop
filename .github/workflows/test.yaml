@@ -174,9 +174,11 @@ jobs:
         run: |
           node app --setup="${SETUP}" --ci="${CI}"
 
+      - name: Install Standard
+        run: npm install standard
+
       - name: Node tests
-        - run: npm install standard
-        - run: npm test
+        run: npm test
 
       - name: Extract coverage info
         run: npm run coverage
