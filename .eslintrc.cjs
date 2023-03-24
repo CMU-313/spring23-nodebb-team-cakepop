@@ -1,3 +1,4 @@
+'use strict';
 
 const fs = require('fs');
 const path = require('path');
@@ -38,7 +39,7 @@ function find_compiled_js() {
         ));
     });
 
-    if (jsFilesList.length == 0) return '';
+    if (jsFilesList.length === 0) return '';
     return jsFilesList;
 }
 
