@@ -209,7 +209,7 @@ async function completeConfigSetup(config) {
     }
 
     // If port is explicitly passed via install vars, use it. Otherwise, glean from url if set.
-    const urlObj = url.URL(config.url);
+    const urlObj = new url.URL(config.url);
     if (urlObj.port && (!install.values || !install.values.hasOwnProperty('port'))) {
         config.port = urlObj.port;
     }
