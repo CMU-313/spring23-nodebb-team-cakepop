@@ -16,7 +16,6 @@
         "coverage": "nyc report --reporter=text-lcov > ./coverage/lcov.info",
         "coveralls": "nyc report --reporter=text-lcov | coveralls && rm -r coverage",
         "standardx": "standardx"
-        "postinstall": "patch-package"
     },
     "nyc": {
         "exclude": [
