@@ -209,7 +209,8 @@ async function completeConfigSetup(config) {
     }
 
     // If port is explicitly passed via install vars, use it. Otherwise, glean from url if set.
-    const urlObj = new url.URL(config.url);
+    // eslint-disable-next-line
+    const urlObj = url.parse(config.url);
     if (urlObj.port && (!install.values || !install.values.hasOwnProperty('port'))) {
         config.port = urlObj.port;
     }
