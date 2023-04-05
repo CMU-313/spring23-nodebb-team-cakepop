@@ -2,12 +2,9 @@ import pandas as pd
 import joblib
 from pydantic import BaseModel, Field
 from pydantic.tools import parse_obj_as
+import os
 
-# installing FastAPI
-from typing import Union
-from fastapi import FastAPI, HTTPException
-
-app = FastAPI()
+file_path = os.path.dirname(os.path.abspath(__file__))
 
 # Pydantic Models
 class Student(BaseModel):
@@ -28,7 +25,6 @@ class PredictionResult(BaseModel):
 
 
 # Main Functionality
-@app.get("/")
 def predict(student):
     '''
     Returns a prediction on whether the student will be a good employee
