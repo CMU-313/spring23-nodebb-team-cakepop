@@ -3,6 +3,12 @@ import joblib
 from pydantic import BaseModel, Field
 from pydantic.tools import parse_obj_as
 
+# installing FastAPI
+from typing import Union
+from fastapi import FastAPI, HTTPException
+
+app = FastAPI()
+
 # Pydantic Models
 class Student(BaseModel):
     student_id: str = Field(alias="Student ID")
@@ -22,6 +28,7 @@ class PredictionResult(BaseModel):
 
 
 # Main Functionality
+@app.get("/")
 def predict(student):
     '''
     Returns a prediction on whether the student will be a good employee
