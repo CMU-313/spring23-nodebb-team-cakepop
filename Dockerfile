@@ -2,6 +2,7 @@ FROM node:lts
 
 RUN mkdir -p /usr/src/app && \
     chown -R node:node /usr/src/app
+
 WORKDIR /usr/src/app
 
 ARG NODE_ENV
@@ -15,6 +16,7 @@ RUN npm install --only=prod && \
     npm cache clean --force
 
 COPY --chown=node:node . /usr/src/app
+COPY --chown=node:node /src/new_config.json /usr/src/app/config.json
 
 ENV NODE_ENV=production \
     daemon=false \
@@ -22,4 +24,4 @@ ENV NODE_ENV=production \
 
 EXPOSE 4567
 
-CMD test -n "${SETUP}" && ./nodebb setup || node ./nodebb build; node ./nodebb start
+CMD node ./nodebb build; node ./nodebb start
