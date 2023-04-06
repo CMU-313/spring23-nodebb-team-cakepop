@@ -24,6 +24,8 @@ module.exports = function (utils, Benchpress, relative_path) {
         userAgentIcons,
         buildAvatar,
         register,
+        getPredictionColor,
+        formatPrediction,
         __escape: identity,
     };
 
@@ -343,7 +345,10 @@ module.exports = function (utils, Benchpress, relative_path) {
     }
 
     function formatPrediction(prediction) {
-        return prediction;
+        if (prediction == 1) {
+            return "good";
+        }
+        return "poor";
     }
     
     function register() {
