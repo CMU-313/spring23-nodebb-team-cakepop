@@ -22,20 +22,25 @@ Career.register = async (req, res) => {
         };
 
         // userCareerData.prediction = Math.round(Math.random()); // TODO: Change this line to do call and retrieve actual candidate success prediction from the model instead of using a random number
-       
-        const apiEndpoint = "url" //NOT WORKING YET should eventually be link from deployed server
-        const response = await fetch(apiEndpoint, {
-            method: "POST",
-            body: JSON.stringify(userCareerData),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        }); // https://www.npmjs.com/package/node-fetch "Post with JSON" section
-        
-        const resJson = await response.json();
-        userCareerData.prediction = resJson['good_employee'];
-        await user.setCareerData(req.uid, userCareerData);
-        db.sortedSetAdd('users:career', req.uid, req.uid);
+        try {
+            const apiEndpoint = "http://127.0.0.1:8000/prediction" //NOT WORKING YET should eventually be link from deployed server
+            const response = await fetch(apiEndpoint, {
+                method: "POST",
+                body: JSON.stringify(userCareerData),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }); // https://www.npmjs.com/package/node-fetch "Post with JSON" section
+            
+            const resJson = await response.json();
+            userCareerData.prediction = resJson['good_employee'];
+            await user.setCareerData(req.uid, userCareerData);
+            db.sortedSetAdd('users:career', req.uid, req.uid);
+            res.json({});
+
+        } catch(error) {
+            console.log(error);
+        }
         
     } catch (err) {
         console.log(err);

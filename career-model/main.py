@@ -1,6 +1,6 @@
 from typing import Union
 from fastapi import FastAPI
-from app.predict import predict, Student, PredictionResult
+from predict import predict, Student, PredictionResult
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -14,5 +14,5 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-@app.post("/career-prediction")
+@app.post("/prediction")
 async def prediction(student: Student) -> PredictionResult: return predict(student)
