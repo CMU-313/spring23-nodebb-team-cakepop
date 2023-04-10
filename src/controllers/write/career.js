@@ -23,7 +23,7 @@ Career.register = async (req, res) => {
 
         // userCareerData.prediction = Math.round(Math.random()); // TODO: Change this line to do call and retrieve actual candidate success prediction from the model instead of using a random number
         try {
-            const apiEndpoint = "http://127.0.0.1:8000/prediction" //NOT WORKING YET should eventually be link from deployed server
+            const apiEndpoint = "https://team-cakepop-career.fly.dev/prediction" //NOT WORKING YET should eventually be link from deployed server
             const response = await fetch(apiEndpoint, {
                 method: "POST",
                 body: JSON.stringify(userCareerData),

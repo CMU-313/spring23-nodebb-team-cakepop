@@ -1,3 +1,5 @@
+# fly.toml file generated for djkew-pred on 2023-04-01T16:25:55-04:00
+
 app = "team-cakepop-career"
 kill_signal = "SIGINT"
 kill_timeout = 5
@@ -11,7 +13,7 @@ processes = []
 
 [[services]]
   http_checks = []
-  internal_port = 4567
+  internal_port = 8080
   processes = ["app"]
   protocol = "tcp"
   script_checks = []
