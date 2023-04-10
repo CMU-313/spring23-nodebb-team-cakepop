@@ -1,6 +1,6 @@
 from typing import Union
 from fastapi import FastAPI
-from predict import predict, Student, PredictionResult
+from app.predict import predict, Student, PredictionResult
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 

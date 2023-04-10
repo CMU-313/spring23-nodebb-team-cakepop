@@ -25,4 +25,4 @@ ENV NODE_ENV=production \
 
 EXPOSE 4567
 
-CMD ./nodebb setup && ./nodebb start
+CMD test -n "${SETUP}" && ./nodebb setup || node ./nodebb start

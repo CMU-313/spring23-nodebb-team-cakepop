@@ -1,4 +1,6 @@
-app = "team-cakepop-career"
+# fly.toml file generated for team-cakepop on 2023-04-10T11:43:29-04:00
+
+app = "team-cakepop"
 kill_signal = "SIGINT"
 kill_timeout = 5
 primary_region = "iad"
