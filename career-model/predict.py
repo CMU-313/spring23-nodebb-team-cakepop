@@ -2,9 +2,6 @@ import pandas as pd
 import joblib
 from pydantic import BaseModel, Field
 from pydantic.tools import parse_obj_as
-import os
-
-file_path = os.path.dirname(os.path.abspath(__file__))
 
 # Pydantic Models
 class Student(BaseModel):

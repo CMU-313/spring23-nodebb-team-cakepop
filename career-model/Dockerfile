@@ -1,11 +1,17 @@
-FROM python:3.9
+FROM python:3.9-slim-buster
 
-WORKDIR /code
+WORKDIR /usr/src/app/NodeBB/career-model
 
-COPY ./requirements.txt /code/requirements.txt
+COPY requirements.txt .
 
-RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
-COPY ./app /code/app
+COPY main.py .
 
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8080"]
+COPY model.pkl .
+
+COPY predict.py .
+
+EXPOSE 8080
+
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080"]
