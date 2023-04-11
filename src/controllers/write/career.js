@@ -1,12 +1,9 @@
 'use strict';
-
-const fetch = require('node-fetch');
 const helpers = require('../helpers');
 const user = require('../../user');
 const db = require('../../database');
-
+const fetch = require('node-fetch');
 const Career = module.exports;
-
 Career.register = async (req, res) => {
     const userData = req.body;
     try {
@@ -21,24 +18,39 @@ Career.register = async (req, res) => {
             num_past_internships: userData.num_past_internships,
         };
 
+        const apiEndpoint = "https:/team-cakepop-career/prediction" //NOT WORKING YET should eventually be link from deployed server
+        const response = await fetch(apiEndpoint, {
+            method: "POST",
+            body: JSON.stringify(userCareerData),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }); // https://www.npmjs.com/package/node-fetch "Post with JSON" section
+
+        const resJson = await response.json();
+        userCareerData.prediction = resJson['good_employee'];
+        await user.setCareerData(req.uid, userCareerData);
+        db.sortedSetAdd('users:career', req.uid, req.uid);
         try {
-            const APIEndpoint = `https://team-cakepop-career.fly.dev/prediction`;
-            const response = await fetch(APIEndpoint, {
-                method: 'POST',
+            const apiEndpoint = "https:/team-cakepop-career/prediction" //NOT WORKING YET should eventually be link from deployed server
+            const response = await fetch(apiEndpoint, {
+                method: "POST",
                 body: JSON.stringify(userCareerData),
                 headers: {
-                    'Content-Type': 'application/json',
-                },
-            });
-            const res_json = await response.json();
-            userCareerData.prediction = res_json.good_employee;
+                    'Content-Type': 'application/json'
+                }
+            }); // https://www.npmjs.com/package/node-fetch "Post with JSON" section
 
+            const resJson = await response.json();
+            userCareerData.prediction = resJson['good_employee'];
             await user.setCareerData(req.uid, userCareerData);
             db.sortedSetAdd('users:career', req.uid, req.uid);
             res.json({});
-        } catch (error) {
+
+        } catch(error) {
             console.log(error);
         }
+
     } catch (err) {
         console.log(err);
         helpers.noScriptErrors(req, res, err.message, 400);
